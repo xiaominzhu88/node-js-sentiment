@@ -1,15 +1,13 @@
 const request = require('request');
 const url = 'https://apidemo.theysay.io/api/v1/sentiment';
 
-// Use command line to pass in text as command-line 'INPUT'
-const textInput = process.argv
-  .filter((value, i) => i !== 0 && i !== 1)
-  .join(' ');
-console.log(textInput);
+const fs = require('fs');
+const stream = fs.createWriteStream('myText.txt');
+const textRead = fs.readFile('myText.txt');
 
 // body pass in later to the request
 const body = {
-  text: textInput,
+  text: textRead,
   level: 'entity',
 };
 
@@ -56,8 +54,10 @@ request(
     //log the 'parsed' value as OBJECT out
     console.log('Response:', value);
 
-    // Object.values() returns an Array of Values,but no need here
-    const info = value[0].sentiment;
+    //console.log(Object.values(value)[0]);
+    // Object.values() returns an Array of Values
+
+    const info = Object.values(value)[0].sentiment;
 
     // convert returned float number to percentage
     const confidencePercentage = (info.confidence * 100).toFixed(2) + '%';
