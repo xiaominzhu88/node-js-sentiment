@@ -1,6 +1,5 @@
 const request = require('request');
 const url = 'https://apidemo.theysay.io/api/v1/sentiment';
-
 request(
   {
     method: 'POST',
@@ -30,9 +29,7 @@ request(
 
   function (error, response, data) {
     error ? console.log(error) : console.log('Status:', response.statusCode);
-
     //console.log('Headers:', JSON.stringify(response.headers));
-
     console.log('Response:', data);
   },
 );

@@ -41,7 +41,6 @@ request(
     // Convert the type of command-line 'INPUT'
     body: JSON.stringify(body),
   },
-
   function (error, response, data) {
     error ? console.log(error) : console.log('Status:', response.statusCode);
 
@@ -54,7 +53,7 @@ request(
     const value = JSON.parse(data);
 
     //log the 'parsed' value as OBJECT out
-    console.log('Response:', value);
+    //console.log('Response:', value);
 
     // Object.values() returns an Array of Values,but no need here
     const info = value[0].sentiment;
@@ -65,10 +64,7 @@ request(
     const negativePercentage = (info.negative * 100).toFixed(2) + '%';
     const neutralPercentage = (info.neutral * 100).toFixed(2) + '%';
 
-    // command line arguments => input
-    //const myArgs = process.argv;
-
-    //use Conditional operators to make the code simple
+    //use Conditional operators
     textInput
       ? console.log(`Your text has the following sentiment: ${info.label} (with ${confidencePercentage} certainty)
      ${positivePercentage} positive ${negativePercentage} negative ${neutralPercentage} neutral`)
